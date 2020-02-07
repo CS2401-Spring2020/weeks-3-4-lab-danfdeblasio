@@ -107,7 +107,7 @@ public class GameOfLife {
       if(i!=0) System.out.print(" ");
       System.out.print("[");
       for(int j=0; j<inBoard[0].length; j++) {
-        System.out.print(inBoard[i][j]);
+        System.out.print((inBoard[i][j]==1)?"X":" ");
       }
       System.out.print("]");
       if(i<inBoard[0].length-1) System.out.print("\n");
