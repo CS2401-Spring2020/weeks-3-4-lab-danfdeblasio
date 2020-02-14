@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 class GOLTester {
 	public static void main(String[] args) {
-
 	}
 	
 	@Test
@@ -22,19 +21,94 @@ class GOLTester {
 	}
 	
 	@Test
-	public void squareSmallTorusTest() {
-	  int[][] squareArr = {{1,1},{1,1}};
-	  TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
+  public void squareSmallTorusTest() {
+    int[][] squareArr = {{1,1},{1,1}};
+    TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
 
-	  int[][] squareArrAfter = {{0,0},{0,0}};
-	  //assertEquals(boardUp, blinker.getBoard());
-	  square.oneStep();
-	  assertArrayEquals(squareArrAfter, square.getBoard());
-	  for(int i=0; i<100; i += 10) {
-		  square.evolution(i);
-		  assertArrayEquals(squareArrAfter, square.getBoard());
-	  }
-	}
+    int[][] squareArrAfter = {{1,1},{1,1}};
+    //assertEquals(boardUp, blinker.getBoard());
+    square.oneStep();
+    assertArrayEquals(squareArrAfter, square.getBoard());
+    for(int i=0; i<100; i += 10) {
+      square.evolution(i);
+      assertArrayEquals(squareArrAfter, square.getBoard());
+    }
+  }
+	
+  @Test
+  public void small2b2TorusTest() {
+    int[][] squareArr = {{1,0},{1,1}};
+    TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
+
+    int[][] squareArrAfter = {{1,1},{1,1}};
+    //assertEquals(boardUp, blinker.getBoard());
+    square.oneStep();
+    assertArrayEquals(squareArrAfter, square.getBoard());
+    for(int i=0; i<100; i += 10) {
+      square.evolution(i);
+      assertArrayEquals(squareArrAfter, square.getBoard());
+    }
+  }
+  
+  @Test
+  public void small2b2TorusTest2() {
+    int[][] squareArr = {{1,0},{0,1}};
+    TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
+
+    int[][] squareArrAfter = {{0,0},{0,0}};
+    //assertEquals(boardUp, blinker.getBoard());
+    square.oneStep();
+    assertArrayEquals(squareArrAfter, square.getBoard());
+    for(int i=0; i<100; i += 10) {
+      square.evolution(i);
+      assertArrayEquals(squareArrAfter, square.getBoard());
+    }
+  }
+  
+  @Test
+  public void small2b2TorusTest3() {
+    int[][] squareArr = {{0,0},{0,1}};
+    TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
+
+    int[][] squareArrAfter = {{0,0},{0,0}};
+    //assertEquals(boardUp, blinker.getBoard());
+    square.oneStep();
+    assertArrayEquals(squareArrAfter, square.getBoard());
+    for(int i=0; i<100; i += 10) {
+      square.evolution(i);
+      assertArrayEquals(squareArrAfter, square.getBoard());
+    }
+  }
+  
+  @Test
+  public void small1b1TorusTest1() {
+    int[][] squareArr = {{0}};
+    TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
+
+    int[][] squareArrAfter = {{0}};
+    //assertEquals(boardUp, blinker.getBoard());
+    square.oneStep();
+    assertArrayEquals(squareArrAfter, square.getBoard());
+    for(int i=0; i<100; i += 10) {
+      square.evolution(i);
+      assertArrayEquals(squareArrAfter, square.getBoard());
+    }
+  }
+  
+  @Test
+  public void small1b1TorusTest2() {
+    int[][] squareArr = {{1}};
+    TorusGameOfLife square = new TorusGameOfLife(squareArr) ;
+
+    int[][] squareArrAfter = {{0}};
+    //assertEquals(boardUp, blinker.getBoard());
+    square.oneStep();
+    assertArrayEquals(squareArrAfter, square.getBoard());
+    for(int i=0; i<100; i += 10) {
+      square.evolution(i);
+      assertArrayEquals(squareArrAfter, square.getBoard());
+    }
+  }
 	
 	@Test
 	public void squareTest() {

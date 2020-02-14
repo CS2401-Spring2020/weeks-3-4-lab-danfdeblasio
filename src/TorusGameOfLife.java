@@ -23,15 +23,19 @@ public class TorusGameOfLife extends GameOfLife{
     int im1 = (size + i - 1) % size;
     int jm1 = (size + j - 1) % size;
     
+    // if the board is a 1x1 then there are no neighbors
+    if(ip1 == i && jp1 == j && im1 == i && jm1 ==j) return 0; 
     
-    rtn += previousBoard[im1][jm1];     // up left
-    rtn += previousBoard[im1][j];       // up
-    rtn += previousBoard[im1][jp1];     // up right
-    rtn += previousBoard[i][jp1];       // right
-    rtn += previousBoard[ip1][jp1];     // down right
-    rtn += previousBoard[ip1][j];       // down 
-    rtn += previousBoard[ip1][jm1];     // down left
-    rtn += previousBoard[i][jm1];       // left
+    // in the following, if the previous column is the same as the next column 
+    //(i.e. if it is a 2x2 board) only include the new actual location the first time. 
+                                rtn += previousBoard[im1][jm1];     // up left
+                                rtn += previousBoard[im1][j];       // up
+    if(jp1!=jm1)                rtn += previousBoard[im1][jp1];     // up right (could be the same as up left)
+                                rtn += previousBoard[i][jp1];       // right
+    if(ip1 != im1)              rtn += previousBoard[ip1][jp1];     // down right (could be the same as up right)
+    if(ip1 != im1)              rtn += previousBoard[ip1][j];       // down (could be the same as up)
+    if(ip1 != im1 && jp1!=jm1)  rtn += previousBoard[ip1][jm1];     // down left (could be the same as down right, up right, up left)
+    if(jp1!=jm1)                rtn += previousBoard[i][jm1];       // left (could be the same as right)
     
     
     return rtn;
