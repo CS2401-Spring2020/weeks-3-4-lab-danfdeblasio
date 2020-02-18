@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class GOLTester {
 	public static void main(String[] args) {
 	}
-	
+
 	@Test
 	public void squareSmallTest() {
 	  int[][] squareArr = {{1,1},{1,1}};
@@ -347,4 +347,214 @@ class GOLTester {
       assertArrayEquals(startPosition, p31.getBoard());
     }
   }
+
+  	/*******************************************************************************************
+	 * 								Alex's Test Cases
+	 * *****************************************************************************************/
+	@Test
+	void oneStep() {
+		int[][] arr = {
+				{1, 0, 1},
+				{0, 1, 0},
+				{0, 0, 0}
+		};
+		GameOfLife gol = new GameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 1, 0},
+				{0, 1, 0},
+				{0, 0, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void oneStep1() {
+		int[][] arr = {
+				{1, 0, 1},
+				{0, 1, 0},
+				{1, 0, 1}
+		};
+		GameOfLife gol = new GameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 1, 0},
+				{1, 0, 1},
+				{0, 1, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void oneStep2() {
+		int[][] arr = {
+				{0, 0, 0, 0},
+				{0, 1, 1, 0},
+				{0, 1, 1, 0},
+				{0, 0, 0, 0}
+		};
+		GameOfLife gol = new GameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 0, 0, 0},
+				{0, 1, 1, 0},
+				{0, 1, 1, 0},
+				{0, 0, 0, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void oneStep3() {
+		int[][] arr = {
+				{0, 0, 0},
+				{0, 0, 0},
+				{0, 0, 0}
+		};
+		GameOfLife gol = new GameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 0, 0},
+				{0, 0, 0},
+				{0, 0, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void oneStep4() {
+		int[][] arr = {
+				{0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0},
+				{0, 0, 1, 1, 1, 0},
+				{0, 1, 1, 1, 0, 0},
+				{0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0}
+		};
+		GameOfLife gol = new GameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 1, 0, 0},
+				{0, 1, 0, 0, 1, 0},
+				{0, 1, 0, 0, 1, 0},
+				{0, 0, 1, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void oneStep5() {
+		int[][] arr = {
+				{0, 0, 0, 1, 0, 0},
+				{0, 0, 0, 1, 0, 0},
+				{1, 1, 1, 0, 1, 1},
+				{0, 0, 0, 1, 0, 0},
+				{0, 0, 0, 1, 0, 0},
+				{0, 0, 0, 1, 0, 0}
+		};
+		GameOfLife gol = new GameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 0, 0, 0, 0, 0},
+				{0, 1, 0, 1, 0, 0},
+				{0, 1, 1, 0, 1, 0},
+				{0, 1, 0, 1, 0, 0},
+				{0, 0, 1, 1, 1, 0},
+				{0, 0, 0, 0, 0, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	/*******************************************************************
+	 						Neighbors
+	 *******************************************************************/
+
+	@Test
+	void neighbors() {
+		int[][] arr = {
+				{1, 0, 1},
+				{0, 1, 0},
+				{0, 0, 0}
+		};
+
+		GameOfLife gol = new GameOfLife(arr);
+		assertEquals(2, gol.neighbors(1, 1));
+		assertEquals(1, gol.neighbors(0, 0));
+		assertEquals(3, gol.neighbors(0, 1));
+		assertEquals(1, gol.neighbors(2, 2));
+	}
+
+	@Test
+	void neighbors1() {
+		int[][] arr = {
+				{1, 0, 1},
+				{0, 1, 0},
+				{1, 0, 1}
+		};
+
+		GameOfLife gol = new GameOfLife(arr);
+		assertEquals(4, gol.neighbors(1, 1));
+		assertEquals(1, gol.neighbors(0, 0));
+		assertEquals(3, gol.neighbors(0, 1));
+		assertEquals(1, gol.neighbors(2, 2));
+	}
+
+	@Test
+	void oneStepTorus() {
+		int[][] arr = {
+				{1, 0, 1},
+				{0, 1, 0},
+				{1, 0, 1}
+		};
+		TorusGameOfLife gol = new TorusGameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{0, 0, 0},
+				{0, 0, 0},
+				{0, 0, 0}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void oneStepTorus1() {
+		int[][] arr = {
+				{0, 0, 1},
+				{0, 0, 1},
+				{0, 0, 1}
+		};
+		TorusGameOfLife gol = new TorusGameOfLife(arr);
+		gol.oneStep();
+		int[][] expected = {
+				{1, 1, 1},
+				{1, 1, 1},
+				{1, 1, 1}
+		};
+		int[][] board = gol.getBoard();
+		assertArrayEquals(expected, board);
+	}
+
+	@Test
+	void neighborsTorus() {
+		int[][] arr = {
+				{1, 0, 1},
+				{0, 1, 0},
+				{0, 0, 0}
+		};
+
+		TorusGameOfLife gol = new TorusGameOfLife(arr);
+		assertEquals(2, gol.neighbors(1, 1));
+		assertEquals(2, gol.neighbors(0, 0));
+		assertEquals(3, gol.neighbors(0, 1));
+		assertEquals(3, gol.neighbors(2, 2));
+	}
 }
